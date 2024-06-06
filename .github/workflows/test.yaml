@@ -5,12 +5,11 @@ on:
     branches:
       - main
     paths:
-      - 'Kayode40/github_test/.github/workflows/test.yaml'
+      - '.github/workflows/test.yaml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'ref/heads/main'
     steps:
       - uses: actions/checkout@v2
         with:
