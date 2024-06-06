@@ -10,7 +10,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'ref/heads/main'
     steps:
       - uses: actions/checkout@v2
         with:
