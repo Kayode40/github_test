@@ -15,5 +15,5 @@ jobs:
         with:
           ref: 'main'
       - name: Run Test A
-        run: echo "🍏 This job is on main"
+        run: echo "🍏 This job is on new_branch"
         
