@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'Kayode40/github_test/.github/workflows/test.yaml'
+      - 'Kayode40/github_test/.github/workflows/test.yaml@main'
 
 jobs:
   build:
