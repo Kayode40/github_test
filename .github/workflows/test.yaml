@@ -1,0 +1,19 @@
+name: Wofkflow A
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/test.yaml@main'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - name: Run Test A
+        run: echo "🍏 This job is on main"
+        
