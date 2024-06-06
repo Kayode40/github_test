@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - '.github/workflows/test.yaml@main'
+      - '.github/workflows/test.yaml'
 
 jobs:
   build:
