@@ -1,0 +1,19 @@
+name: Wofkflow A
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'Kayode40/github_test/.github/workflows/test.yaml'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.ref == 'ref/heads/main'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: 'main'
+      - name: Run Test A
+        run: echo "🍏 This job is on new-branch"
