@@ -17,4 +17,6 @@ jobs:
           ref: 'main'
       - name: Run Test A
         run: echo "🍏 This job is on main"
+      - name: Run Test B
+        run: echo "🍏 This is a new commit yo trigger the workflow"
         
