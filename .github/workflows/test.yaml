@@ -21,7 +21,7 @@ jobs:
         run: echo "🍏 This is a new commit yo trigger the workflow"
       - run: |
           # Get all repos
-          repos=$(gh api /orgs/kayode40/repos?sort=full_name --jq .[].full_name)
+          repos=$(gh api /users/kayode40/repos?sort=full_name --jq .[].full_name)
           
           ago=$(date -d "2 hours ago" -Iseconds)
           
