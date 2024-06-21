@@ -19,8 +19,30 @@ jobs:
         run: echo "🍏 This job is on main"
       - name: Run Test B
         run: echo "🍏 This is a new commit yo trigger the workflow"
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: kayode40
-          password: "xxxxxxx"
+      - run: |
+          ago=$(date -r $(($(date +%s) - 30 * 60 )) -Iseconds)
+          
+          repos=$(gh api "/users/${GITHUB_ACTOR}/repos?sort=full_name" --jq .[].full_name)
+          for repo in ${repos}; do
+              check_suite_ids=$(gh api "/repos/${repo}/actions/runs?created=>=${ago}" --jq .workflow_runs.[].check_suite_id)
+              declare -a messages=()
+              for check_suite_id in ${check_suite_ids}; do
+                  annotation_urls=$(gh api "/repos/${repo}/check-suites/${check_suite_id}/check-runs" --jq .check_runs.[].output.annotations_url)
+                  for url in ${annotation_urls}; do
+                      run_message=$(gh api "$url" --jq .[].message)
+                      if [[ -n "${run_message}" ]]; then
+                          messages+=("${run_message}")
+                      fi
+                  done
+              done
+              if [ ${#messages[@]} -ne 0 ]; then
+                  echo "${repo}:"
+                  mapfile -t unique_messages < <( for i in "${messages[@]}"; do echo $i; done | sort -u )
+                  for message in "${unique_messages[@]}"; do
+                      echo "  - ${message}"
+                  done
+                  echo ""
+              fi
+              unset messages
+              unset unique_messages
+          done
