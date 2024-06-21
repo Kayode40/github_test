@@ -23,7 +23,7 @@ jobs:
           # Get all repos
           repos=$(gh api /orgs/ORGANIZATION/repos?sort=full_name --jq .[].full_name)
           
-          ago=$(date -r $(($(date +%s) - 10800)) -Iseconds)
+          ago=$(date -r $(($(date +%s) - 3600)) -Iseconds)
           
           for repo in $repos; do
             echo "Checking repo $repo"
