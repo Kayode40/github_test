@@ -1,4 +1,4 @@
-name: Wofkflow A
+name: Wofkflow B
 
 on: [push]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@4
+        uses: actions/checkout@v4
       - name: Run Test A
         run: echo "This job is on main"
       - name: Check Kay CodeQL alerts
