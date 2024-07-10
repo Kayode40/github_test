@@ -9,8 +9,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@$actions_repo_version
-        with:
-          ref: 'main'
+      - name: Checkout
+        uses: actions/checkout@4
       - name: Run Test A
         run: echo "This job is on main"
+      - name: Check Kay CodeQL alerts
+        run: |
+          ALERTS=$(curl -s -H "Authorization: Bearer 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" \
+            "https://api.github.com/repos/kayode40/github_test/code-scanning/alerts?state=open")
+
+          if [[ "$ALERTS" == "[]" ]]; then
+            echo "No open CodeQL alerts. Workflow will continue."
+          else
+            echo "CodeQL alerts are open. Workflow will fail."
+            exit 1
+          fi
+      - name: Run Test B
+        run: echo "The test completed successfully"
