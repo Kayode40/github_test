@@ -29,8 +29,8 @@ jobs:
 
       - name: Rebase on top of the latest master
         run: |
-          git fetch origin master
-          git rebase origin/master --strategy-option=ours
+          git fetch origin main
+          git rebase origin/main --strategy-option=ours
 
       - name: Push changes
         run: |
