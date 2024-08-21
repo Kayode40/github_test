@@ -2,6 +2,9 @@ name: Generate and Commit Report
 
 on: push
 
+permissions:
+  contents: write
+
 jobs:
   generate-report:
     runs-on: ubuntu-latest
