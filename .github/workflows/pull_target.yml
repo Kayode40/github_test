@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} Pull Request checks
 
 on:
   pull_request_target:
+  workflow_dispatch:
 
 jobs:
   Explore-GitHub-Actions:
